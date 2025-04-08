@@ -1,11 +1,11 @@
 # Purpose of the project
 A set of functions that can be used to reconcile NHS organisation data to the Organisation Data Service and add short organisation names for South East Region Trusts
 
-This project uses a folder called setup_r/ to store reusable functions.
+This project uses a folder called setup_org_rec/ to store reusable functions.
 
 To run scripts in this project:
 
-Do not move or rename the setup_r/ folder
+Do not move or rename the setup_org_rec/ folder
 All wrapper scripts assume this folder exists at the same level.
 
 Use the setup script setup_ods_org_reconciliation.R to load all functions.
