@@ -38,7 +38,7 @@ update_org_names <- function(df,code_column,name_column,verbose=TRUE) {
   
   df_2 <- df |> 
     dplyr::mutate(
-      !!sym_name := dplyr::coalesce(org_lookup[as.character(!!sym_code)], "Unknown")
+      !!sym_name := dplyr::coalesce(unname(org_lookup[as.character(df[[code_column]])]), "Unknown")
     )
 
   if (verbose){
