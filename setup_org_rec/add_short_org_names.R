@@ -65,7 +65,8 @@ add_short_org_names <- function(df, code_column,new_col_name){
     'RPC' = 'QVH',
     'RXC' = 'ESH',
     'RYR' = 'UHSx',
-    'RX2' = 'SxPartnership')
+    'RX2' = 'SxPartnership',
+    'RDR' = 'SSx Community')
   
   
   df[[new_col_name]] <- ifelse(
