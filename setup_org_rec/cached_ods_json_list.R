@@ -2,7 +2,7 @@
 # Memoise caches the result of the API call in memory,
 # improving performance on repeated calls during a session
 
-source('setup_r/extract_ods_json_list.R')
+source('setup_org_rec/extract_ods_json_list.R')
 
 cached_ods_json_list <-  memoise::memoise(extract_ods_json_list)
 
