@@ -67,14 +67,13 @@ add_short_org_names <- function(df, code_column,new_col_name){
     'RYR' = 'UHSx',
     'RX2' = 'SxPartnership')
   
-  df[[new_col_name]] <- sapply(df[[code_column]], 
-                               function(x) {
-                                 if (x %in% names(names_lookup)) {
-                                   names_lookup[x]
-                                 } else {
-                                   "Unknown" # Default value for unknown codes
-                                 }
-                               })  
+  
+  df[[new_col_name]] <- ifelse(
+    df[[code_column]] %in% names(names_lookup),
+    unname(names_lookup[df[[code_column]]]),
+    "Unknown"
+  )
+ 
   return(df)      
   
 }
