@@ -11,7 +11,7 @@ extract_ods_json_list <- function(df,code_column) {
     #' speeding up the function when used repeatedly.
   #' 
   #' @param df the dataframe that has the column containing organisation codes
-  #' @param code_column the column within the dataframe that has the organisation codes
+  #' @param code_column the column (as a string) within the dataframe that has the organisation codes
   #' 
 
   
