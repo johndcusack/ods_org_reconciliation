@@ -12,11 +12,11 @@ extract_ods_json_list <- function(df,code_column) {
   #' 
   #' @param df the dataframe that has the column containing organisation codes
   #' @param code_column the column (as a string) within the dataframe that has the organisation codes
-  #' 
+  #' @keywords internal
 
   
   if (!requireNamespace("httr2", quietly = TRUE)) {
-    stop("The 'httr2' package is required but not installed. Please install it.")
+    stop("The 'httr2' package is required but not installed.")
   }
 
   if (!code_column %in% names(df)) {
