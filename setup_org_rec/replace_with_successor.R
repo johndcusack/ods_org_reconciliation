@@ -14,9 +14,6 @@ replace_with_successor <- function(df, code_column, verbose = TRUE) {
   #' This function will work on a code containing any organisation code registered in the ODS
   #' It will not work on site codes 
   
-  source("setup_org_rec/cached_ods_json_list.R")
-  source("setup_org_rec/create_ods_table.R")
-  
   if (!requireNamespace("dplyr", quietly = TRUE)) {
     stop("The 'dplyr' package is required but not installed.")
   }

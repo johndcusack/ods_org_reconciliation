@@ -17,30 +17,23 @@ update_org_names <- function(df,code_column,name_column,verbose=TRUE) {
   #' This function will work on a code containing any organisation code registered in the ODS
   #' It will not work on site codes 
   
-  source('setup_org_rec/cached_ods_json_list.R')
-  source('setup_org_rec/create_ods_table.R')
-  
-  if (!requireNamespace("dplyr", quietly = TRUE)) {
-    stop("The 'dplyr' package is required but not installed. Please install it.")
-  }
-  
   if (!code_column %in% names(df)) {
     stop("The specified code_column does not exist in the dataframe.")
   }
-
-  sym_code <-  rlang::sym(code_column)
-  sym_name <- rlang::sym(name_column)
+  
   org_list <- cached_ods_json_list(df,code_column)
   ods_table <-  create_ods_table(org_list) |> dplyr::select(-successor_code)
   
-  
   org_lookup <- setNames(ods_table$org_name, ods_table$org_code)
   
-  df_2 <- df |> 
-    dplyr::mutate(
-      !!sym_name := dplyr::coalesce(unname(org_lookup[as.character(df[[code_column]])]), "Unknown")
-    )
-
+  df_2 <- df 
+  
+  df_2[[name_column]] <- ifelse(
+    is.na(org_lookup[as.character(df_2[[code_column]])]),
+    "Unknown",
+    unname(org_lookup[as.character(df_2[[code_column]])])
+  )
+  
   if (verbose){
     unknowns <- sum(df_2[[name_column]] == "Unknown", na.rm = TRUE)
     message(unknowns, " unrecognised organisation codes, ",name_column," set to 'Unknown'.")
